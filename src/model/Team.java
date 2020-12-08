@@ -3,6 +3,7 @@ package model;
 public class Team {
     private String name;
     private int gameWin, gameLoss, gameDraw, points;
+    private Player player;
 
     public Team(String name, int gameWin, int gameLoss, int gameDraw, int points) {
         this.name = name;

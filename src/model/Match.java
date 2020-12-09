@@ -76,11 +76,11 @@ public class Match extends Schedules {
 
     @Override
     public String toString() {
-        return "Match{" +
-                "dayCompetition='" + dayCompetition + '\'' +
+        return "{" +
                 ", host=" + nameHost +
                 ", matchScore='" + matchScore + '\'' +
                 ", guest=" + nameGuest +
+                "day='" + dayCompetition + '\'' +
                 ", broadcastChannel='" + broadcastChannel + '\'' +
                 '}';
     }

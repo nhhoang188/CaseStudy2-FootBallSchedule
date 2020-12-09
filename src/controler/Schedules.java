@@ -1,5 +1,6 @@
 package controler;
 
+import model.Match;
 import model.RegexForm;
 import model.Team;
 
@@ -8,15 +9,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Schedules extends RegexForm {
-    static Team host;
-    static Team guest;
-    List<Math> listMatch = new ArrayList<>();
-    static Scanner sc = new Scanner(System.in);
+    static Team host = new Team();
+    static Team guest = new Team();
+    static List<Match> listMatch = new ArrayList<>();
+    public static void setListProducts(ArrayList<Match> listMatch) {
+        Schedules.listMatch = listMatch;
+    }
+
+    public static List<Match> getListMatch() {
+        return listMatch;
+    }
 
     public void addMatch() {
         String filePath = "ListMatch.CSV";
@@ -70,10 +76,14 @@ public class Schedules extends RegexForm {
     }
 
     public static String inputHost(Team host) {
+        System.out.println("Name of Team Host: ");
+        host.setName(sc.nextLine());
         return host.getName();
     }
 
     public static String inputGuest(Team guest) {
+        System.out.println("Name of Team Host: ");
+        guest.setName(sc.nextLine());
         return guest.getName();
     }
 

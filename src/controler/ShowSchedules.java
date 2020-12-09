@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ShowSchedules extends RegexForm {
-    public static void showAllSchedules(String path) {
+    public static void showAll(String path) {
         File file = new File(path);
         BufferedReader bufferedReader = null;
         String line = "";
@@ -31,7 +31,7 @@ public class ShowSchedules extends RegexForm {
         }
     }
 
-    public static void showSchedulesByTeam(String path) {
+    public static void showByTeam(String path) {
         System.out.println("Name of Team is?: ");
         String name = sc.nextLine();
         Schedules.setListProducts(ShowSchedules.csvToObject("ListMatch.CSV"));

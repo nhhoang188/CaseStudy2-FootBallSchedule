@@ -1,5 +1,6 @@
 package controler;
 
+import model.Match;
 import model.Player;
 import model.RegexForm;
 import model.Team;
@@ -12,8 +13,16 @@ import java.util.List;
 
 
 public class Standings extends RegexForm {
-    List<Team> listTeam = new ArrayList<>();
+    static List<Team> listTeam = new ArrayList<>();
     Player player = new Player();
+
+    public void setListTeam(ArrayList<Team> listTeam) {
+         this.listTeam = listTeam;
+    }
+
+    public List<Team> getListTeam() {
+        return listTeam;
+    }
 
     public void addTeam() {
         String filePath = "ListTeam.CSV";
@@ -24,15 +33,15 @@ public class Standings extends RegexForm {
                 file.createNewFile();
             }
             fileWriter = new FileWriter(file, true);
-            fileWriter.append(Standings.inputNameOfTeam());
+            fileWriter.append(inputNameOfTeam());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(Standings.inputGameWin());
+            fileWriter.append(inputGameWin());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(Standings.inputGameLoss());
+            fileWriter.append(inputGameLoss());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(Standings.inputGameDraw());
+            fileWriter.append(inputGameDraw());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(Standings.points());
+            fileWriter.append(points());
             fileWriter.append(NEW_LINE_SEPARATOR);
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,27 +56,27 @@ public class Standings extends RegexForm {
         }
     }
 
-    public static String inputGameWin() {
+    private String inputGameWin() {
         System.out.print("Input number of games won: ");
         return sc.nextLine();
     }
 
-    public static String inputGameLoss() {
+    private String inputGameLoss() {
         System.out.print("Input number of games loss: ");
         return sc.nextLine();
     }
 
-    public static String inputGameDraw() {
+    private String inputGameDraw() {
         System.out.print("Input number of games draw: ");
         return sc.nextLine();
     }
 
-    public static String points() {
+    private String points() {
         System.out.print("Input number of games draw: ");
         return sc.nextLine();
     }
 
-    public static String inputNameOfTeam() {
+    private String inputNameOfTeam() {
         System.out.println("Enter Name Of Team: ");
         return sc.nextLine();
     }

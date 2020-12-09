@@ -33,15 +33,15 @@ public class Schedules extends RegexForm {
                 file.createNewFile();
             }
             fileWriter = new FileWriter(file, true);
-            fileWriter.append(Schedules.inputDayCompetition());
+            fileWriter.append(inputDayCompetition());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(Schedules.inputHost(host));
+            fileWriter.append(inputHost(host));
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(Schedules.inputGuest(guest));
+            fileWriter.append(inputGuest(guest));
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(Schedules.inputMatchScore());
+            fileWriter.append(inputMatchScore());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(Schedules.inputBroadcastChannel());
+            fileWriter.append(inputBroadcastChannel());
             fileWriter.append(NEW_LINE_SEPARATOR);
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class Schedules extends RegexForm {
         }
     }
 
-    public static String inputDayCompetition() {
+    public String inputDayCompetition() {
         Pattern pattern = Pattern.compile(DATE_REGEX);
         Matcher matcher;
         while (true) {
@@ -75,19 +75,19 @@ public class Schedules extends RegexForm {
         }
     }
 
-    public static String inputHost(Team host) {
+    public String inputHost(Team host) {
         System.out.println("Name of Team Host: ");
         host.setName(sc.nextLine());
         return host.getName();
     }
 
-    public static String inputGuest(Team guest) {
+    public String inputGuest(Team guest) {
         System.out.println("Name of Team Host: ");
         guest.setName(sc.nextLine());
         return guest.getName();
     }
 
-    public static String inputMatchScore() {
+    public  String inputMatchScore() {
 
         while (true) {
             System.out.println("Enter Match Score: ");
@@ -107,7 +107,7 @@ public class Schedules extends RegexForm {
         }
     }
 
-    public static String inputBroadcastChannel() {
+    public String inputBroadcastChannel() {
         System.out.println("Enter Broadcast Channel: ");
         return sc.nextLine();
     }

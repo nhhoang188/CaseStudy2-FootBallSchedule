@@ -1,19 +1,37 @@
 package model;
 
-public class Match {
-    private String dayCompetition, matchScore,broadcastChannel;
+import controler.Schedules;
+
+public class Match extends Schedules {
+    private String dayCompetition, matchScore, broadcastChannel, nameHost, nameGuest;
     Team host;
     Team guest;
 
-    public Match(String dayCompetition, String matchScore, String broadcastChannel, Team host, Team guest) {
+    public Match(String dayCompetition, String matchScore, String broadcastChannel, String nameHost, String nameGuest) {
         this.dayCompetition = dayCompetition;
         this.matchScore = matchScore;
         this.broadcastChannel = broadcastChannel;
-        this.host = host;
-        this.guest = guest;
+        this.nameHost = nameHost;
+        this.nameGuest = nameGuest;
     }
 
     public Match() {
+    }
+
+    public String getNameHost() {
+        return nameHost;
+    }
+
+    public void setNameHost(String nameHost) {
+        this.nameHost = nameHost;
+    }
+
+    public String getNameGuest() {
+        return nameGuest;
+    }
+
+    public void setNameGuest(String nameGuest) {
+        this.nameGuest = nameGuest;
     }
 
     public String getDayCompetition() {
@@ -60,10 +78,10 @@ public class Match {
     public String toString() {
         return "Match{" +
                 "dayCompetition='" + dayCompetition + '\'' +
+                ", host=" + nameHost +
                 ", matchScore='" + matchScore + '\'' +
+                ", guest=" + nameGuest +
                 ", broadcastChannel='" + broadcastChannel + '\'' +
-                ", host=" + host.getName() +
-                ", guest=" + guest.getName() +
                 '}';
     }
 }

@@ -94,19 +94,28 @@ public class ShowSchedules extends RegexForm implements Show {
 
     @Override
     public void showByTeam(String path) {
-        System.out.println("Name of Team is?: ");
-        String name = sc.nextLine();
-        schedules.setListMatch(csvToObject(path));
-        Pattern pattern = Pattern.compile(name);
-        for (int i = 0; i < schedules.getListMatch().size(); i++) {
-            Matcher matcher = pattern.matcher(schedules.getListMatch().get(i).getNameHost().toLowerCase());
-            Matcher matcher2 = pattern.matcher(schedules.getListMatch().get(i).getNameGuest().toLowerCase());
-            Matcher matcher3 = pattern.matcher(schedules.getListMatch().get(i).getNameHost().toUpperCase());
-            Matcher matcher4 = pattern.matcher(schedules.getListMatch().get(i).getNameGuest().toUpperCase());
-            Matcher matcher5 = pattern.matcher(schedules.getListMatch().get(i).getNameHost());
-            Matcher matcher6 = pattern.matcher(schedules.getListMatch().get(i).getNameGuest());
-            if (matcher.find() || matcher2.find() || matcher3.find() || matcher4.find() || matcher5.find() || matcher6.find()) {
-                System.out.println(schedules.getListMatch().get(i));
+        boolean flag = true;
+        while (flag) {
+            System.out.println("Name of Team is?: ");
+            String name = sc.nextLine();
+            schedules.setListMatch(csvToObject(path));
+            Pattern pattern = Pattern.compile(name);
+            int index = 0;
+            for (int i = 0; i < schedules.getListMatch().size(); i++) {
+                Matcher matcher = pattern.matcher(schedules.getListMatch().get(i).getNameHost().toLowerCase());
+                Matcher matcher2 = pattern.matcher(schedules.getListMatch().get(i).getNameGuest().toLowerCase());
+                Matcher matcher3 = pattern.matcher(schedules.getListMatch().get(i).getNameHost().toUpperCase());
+                Matcher matcher4 = pattern.matcher(schedules.getListMatch().get(i).getNameGuest().toUpperCase());
+                Matcher matcher5 = pattern.matcher(schedules.getListMatch().get(i).getNameHost());
+                Matcher matcher6 = pattern.matcher(schedules.getListMatch().get(i).getNameGuest());
+                if (matcher.find() || matcher2.find() || matcher3.find() || matcher4.find() || matcher5.find() || matcher6.find()) {
+                    System.out.println(schedules.getListMatch().get(i));
+                    flag = false;
+                    index++;
+                }
+            }
+            if (index == 0) {
+                System.out.println("Opps!! Please enter the correct format:d ");
             }
         }
     }

@@ -84,7 +84,24 @@ public class ShowStandings extends RegexForm implements Show {
 
     @Override
     public void delete(String path) {
-
+        standings.setListTeam(csvToObject(path));
+        boolean flag = true;
+        while (flag) {
+            System.out.println("Enter Name Of Team:");
+            String name = sc.nextLine();
+            int index = 0;
+            for (int i = 0; i < standings.getListTeam().size(); i++) {
+                if (name.equals(standings.getListTeam().get(i).getName())) {
+                    standings.getListTeam().remove(i);
+                    flag = false;
+                    index++;
+                }
+            }
+            if (index == 0) {
+                System.out.println("Opps!! Please enter the correct name.");
+            }
+        }
+        writeCsv(path);
     }
 
     @Override

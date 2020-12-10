@@ -17,7 +17,7 @@ public class ShowStandings extends RegexForm implements Show {
         standings.setListTeam(csvToObject(path));
         sort(path);
         for (int i = 1; i <= standings.getListTeam().size(); i++) {
-            System.out.println(i + " " + standings.getListTeam().get(i-1));
+            System.out.println(i + " " + standings.getListTeam().get(i - 1));
         }
     }
 
@@ -29,18 +29,30 @@ public class ShowStandings extends RegexForm implements Show {
     @Override
     public void update(String path) {
         standings.setListTeam(csvToObject(path));
-        System.out.println("Enter Name Of Team:");
-        String name = sc.nextLine();
         FileWriter fileWriter = null;
         File file = new File(path);
-        try {
-            fileWriter = new FileWriter(file);
+        boolean flag = true;
+        while (flag) {
+            System.out.println("Enter Name Of Team:");
+            String name = sc.nextLine();
+            int index = 0;
             for (int i = 0; i < standings.getListTeam().size(); i++) {
                 if (name.equals(standings.getListTeam().get(i).getName())) {
+                    System.out.println(standings.getListTeam().get(i));
                     standings.getListTeam().get(i).setGameWin(Standings.inputGameWin());
                     standings.getListTeam().get(i).setGameLoss(Standings.inputGameLoss());
                     standings.getListTeam().get(i).setGameDraw(Standings.inputGameDraw());
+                    flag = false;
+                    index++;
                 }
+            }
+            if (index == 0) {
+                System.out.println("Opps!! Please enter the correct format:d ");
+            }
+        }
+        try {
+            fileWriter = new FileWriter(file);
+            for (int i = 0; i < standings.getListTeam().size(); i++) {
                 fileWriter.append(standings.getListTeam().get(i).getName());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(standings.getListTeam().get(i).getGameWin());
@@ -52,7 +64,6 @@ public class ShowStandings extends RegexForm implements Show {
                 fileWriter.append(standings.getListTeam().get(i).getPoints());
                 fileWriter.append(NEW_LINE_SEPARATOR);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

@@ -29,29 +29,41 @@ public class ShowSchedules extends RegexForm implements Show {
     @Override
     public void update(String path) {
         schedules.setListMatch(csvToObject(path));
-        System.out.println("Enter Name Of Match:");
-        String name = sc.nextLine();
         FileWriter fileWriter = null;
         File file = new File(path);
+        boolean flag = true;
+        while (flag){
+            System.out.println("Enter Name of Team Host:");
+            String name = sc.nextLine();
+            System.out.println("Enter Name of Team Guest:");
+            String name1 = sc.nextLine();
+            int index =0;
+            for (int i = 0; i < schedules.getListMatch().size(); i++) {
+                if (name.equals(schedules.getListMatch().get(i).getNameHost()) && name1.equals(schedules.getListMatch().get(i).getNameGuest())) {
+                    System.out.println(schedules.getListMatch().get(i));
+                    schedules.getListMatch().get(i).setMatchScore(Schedules.inputMatchScore());
+                    schedules.getListMatch().get(i).setDayCompetition(Schedules.inputDayCompetition());
+                    schedules.getListMatch().get(i).setBroadcastChannel(Schedules.inputBroadcastChannel());
+                    flag = false;
+                    index++;
+                }
+            } if (index==0){
+            System.out.println("Opps!! Please enter the correct format:d ");}
+        }
         try {
             fileWriter = new FileWriter(file);
-            for (int i = 0; i < schedules.getListMatch().size(); i++) {
-                if (name!="") {
-
-                }
-
+            for (int j = 0; j < schedules.getListMatch().size(); j++) {
+                fileWriter.append(schedules.getListMatch().get(j).getDayCompetition());
                 fileWriter.append(COMMA_DELIMITER);
-
+                fileWriter.append(schedules.getListMatch().get(j).getNameHost());
                 fileWriter.append(COMMA_DELIMITER);
-
+                fileWriter.append(schedules.getListMatch().get(j).getNameGuest());
                 fileWriter.append(COMMA_DELIMITER);
-
+                fileWriter.append(schedules.getListMatch().get(j).getMatchScore());
                 fileWriter.append(COMMA_DELIMITER);
-
+                fileWriter.append(schedules.getListMatch().get(j).getBroadcastChannel());
                 fileWriter.append(NEW_LINE_SEPARATOR);
-
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -71,7 +83,6 @@ public class ShowSchedules extends RegexForm implements Show {
         String name = sc.nextLine();
         schedules.setListMatch(csvToObject(path));
         Pattern pattern = Pattern.compile(name);
-
         for (int i = 0; i < schedules.getListMatch().size(); i++) {
             Matcher matcher = pattern.matcher(schedules.getListMatch().get(i).getNameHost().toLowerCase());
             Matcher matcher2 = pattern.matcher(schedules.getListMatch().get(i).getNameGuest().toLowerCase());
@@ -79,7 +90,7 @@ public class ShowSchedules extends RegexForm implements Show {
             Matcher matcher4 = pattern.matcher(schedules.getListMatch().get(i).getNameGuest().toUpperCase());
             Matcher matcher5 = pattern.matcher(schedules.getListMatch().get(i).getNameHost());
             Matcher matcher6 = pattern.matcher(schedules.getListMatch().get(i).getNameGuest());
-            if (matcher.find() || matcher2.find() || matcher3.find() || matcher4.find() || matcher5.find() || matcher6.find() ) {
+            if (matcher.find() || matcher2.find() || matcher3.find() || matcher4.find() || matcher5.find() || matcher6.find()) {
                 System.out.println(schedules.getListMatch().get(i));
             }
         }

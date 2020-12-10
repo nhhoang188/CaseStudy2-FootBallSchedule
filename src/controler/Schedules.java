@@ -57,7 +57,7 @@ public class Schedules extends RegexForm {
         }
     }
 
-    public String inputDayCompetition() {
+    public static String inputDayCompetition() {
         Pattern pattern = Pattern.compile(DATE_REGEX);
         Matcher matcher;
         while (true) {
@@ -76,19 +76,19 @@ public class Schedules extends RegexForm {
         }
     }
 
-    public String inputHost(Team host) {
+    public static String inputHost(Team host) {
         System.out.println("Name of Team Host: ");
         host.setName(sc.nextLine());
         return host.getName();
     }
 
-    public String inputGuest(Team guest) {
+    public static String inputGuest(Team guest) {
         System.out.println("Name of Team Guest: ");
         guest.setName(sc.nextLine());
         return guest.getName();
     }
 
-    public String inputMatchScore() {
+    public static String inputMatchScore() {
 
         while (true) {
             System.out.println("Enter Match Score: ");
@@ -108,7 +108,7 @@ public class Schedules extends RegexForm {
         }
     }
 
-    public String inputBroadcastChannel() {
+    public static String inputBroadcastChannel() {
         System.out.println("Enter Broadcast Channel: ");
         return sc.nextLine();
     }

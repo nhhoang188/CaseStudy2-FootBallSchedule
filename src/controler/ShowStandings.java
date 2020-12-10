@@ -16,8 +16,8 @@ public class ShowStandings extends RegexForm implements Show {
     public void showAll(String path) {
         standings.setListTeam(csvToObject(path));
         sort(path);
-        for (int i = 0; i < standings.getListTeam().size(); i++) {
-            System.out.println(standings.getListTeam().get(i));
+        for (int i = 1; i <= standings.getListTeam().size(); i++) {
+            System.out.println(i + " " + standings.getListTeam().get(i-1));
         }
     }
 
@@ -26,7 +26,8 @@ public class ShowStandings extends RegexForm implements Show {
         Collections.sort(standings.getListTeam(), new SortTeamByPoints());
     }
 
-    public void updatePoints(String path) {
+    @Override
+    public void update(String path) {
         standings.setListTeam(csvToObject(path));
         System.out.println("Enter Name Of Team:");
         String name = sc.nextLine();
@@ -50,7 +51,6 @@ public class ShowStandings extends RegexForm implements Show {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(standings.getListTeam().get(i).getPoints());
                 fileWriter.append(NEW_LINE_SEPARATOR);
-
             }
 
         } catch (IOException e) {

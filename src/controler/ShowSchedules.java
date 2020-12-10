@@ -29,8 +29,6 @@ public class ShowSchedules extends RegexForm implements Show {
     @Override
     public void update(String path) {
         schedules.setListMatch(csvToObject(path));
-        FileWriter fileWriter = null;
-        File file = new File(path);
         boolean flag = true;
         while (flag){
             System.out.println("Enter Name of Team Host:");
@@ -50,6 +48,18 @@ public class ShowSchedules extends RegexForm implements Show {
             } if (index==0){
             System.out.println("Opps!! Please enter the correct format:d ");}
         }
+
+    }
+
+    @Override
+    public void delete(String path) {
+
+    }
+
+    @Override
+    public void writeCsv(String path) {
+        FileWriter fileWriter = null;
+        File file = new File(path);
         try {
             fileWriter = new FileWriter(file);
             for (int j = 0; j < schedules.getListMatch().size(); j++) {

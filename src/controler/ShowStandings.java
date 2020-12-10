@@ -29,8 +29,6 @@ public class ShowStandings extends RegexForm implements Show {
     @Override
     public void update(String path) {
         standings.setListTeam(csvToObject(path));
-        FileWriter fileWriter = null;
-        File file = new File(path);
         boolean flag = true;
         while (flag) {
             System.out.println("Enter Name Of Team:");
@@ -50,6 +48,13 @@ public class ShowStandings extends RegexForm implements Show {
                 System.out.println("Opps!! Please enter the correct format:d ");
             }
         }
+        writeCsv(path);
+    }
+
+    @Override
+    public void writeCsv(String path) {
+        FileWriter fileWriter = null;
+        File file = new File(path);
         try {
             fileWriter = new FileWriter(file);
             for (int i = 0; i < standings.getListTeam().size(); i++) {
@@ -75,6 +80,11 @@ public class ShowStandings extends RegexForm implements Show {
                 }
             }
         }
+    }
+
+    @Override
+    public void delete(String path) {
+
     }
 
     @Override

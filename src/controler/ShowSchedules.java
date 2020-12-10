@@ -7,6 +7,7 @@ import model.Show;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,6 +17,7 @@ public class ShowSchedules extends RegexForm implements Show {
     @Override
     public void showAll(String path) {
         schedules.setListMatch(csvToObject(path));
+        sort(path);
         for (int i = 0; i < schedules.getListMatch().size(); i++) {
             System.out.println(schedules.getListMatch().get(i));
         }
@@ -23,7 +25,8 @@ public class ShowSchedules extends RegexForm implements Show {
 
     @Override
     public void sort(String path) {
-
+        schedules.setListMatch(csvToObject(path));
+        Collections.sort(schedules.getListMatch(), new SortScheduleByDate());
     }
 
     @Override

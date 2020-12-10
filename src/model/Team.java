@@ -2,10 +2,10 @@ package model;
 
 public class Team {
     private String name;
-    private int gameWin, gameLoss, gameDraw, points;
+    private String gameWin, gameLoss, gameDraw, points;
     private Player player;
 
-    public Team(String name, int gameWin, int gameLoss, int gameDraw, int points) {
+    public Team(String name, String gameWin, String gameLoss, String gameDraw, String points) {
         this.name = name;
         this.gameWin = gameWin;
         this.gameLoss = gameLoss;
@@ -24,36 +24,45 @@ public class Team {
         this.name = name;
     }
 
-    public int getGameWin() {
+    public String getGameWin() {
         return gameWin;
     }
 
-    public void setGameWin(int gameWin) {
+    public void setGameWin(String gameWin) {
         this.gameWin = gameWin;
     }
 
-    public int getGameLoss() {
+    public String getGameLoss() {
         return gameLoss;
     }
 
-    public void setGameLoss(int gameLoss) {
+    public void setGameLoss(String gameLoss) {
         this.gameLoss = gameLoss;
     }
 
-    public int getGameDraw() {
+    public String getGameDraw() {
         return gameDraw;
     }
 
-    public void setGameDraw(int gameDraw) {
+    public void setGameDraw(String gameDraw) {
         this.gameDraw = gameDraw;
     }
 
-    public int getPoints() {
-        return points;
+    public String getPoints() {
+        int test= (Integer.parseInt(gameWin)*3 + Integer.parseInt(gameDraw) );
+        return test +"";
     }
 
-    public void setPoints(int points) {
+    public void setPoints(String points) {
         this.points = points;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     @Override

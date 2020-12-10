@@ -1,8 +1,8 @@
 package model;
 
 public class Player {
-   private String name;
-   private int goal, assist;
+    private String name;
+    private int goal, assist;
 
     public String getName() {
         return name;

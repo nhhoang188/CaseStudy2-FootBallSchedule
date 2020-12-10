@@ -1,8 +1,13 @@
 package model;
 
-public interface Show {
-    static void showByTeam(String path) {}
-    static void showAll(String path) {}
-    public static void sort(){}
+import java.util.ArrayList;
 
-    }
+public interface Show {
+    void showByTeam(String path);
+
+    void showAll(String path);
+
+    void sort(String path);
+
+    ArrayList<?> csvToObject(String path);
+}

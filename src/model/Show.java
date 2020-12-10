@@ -9,5 +9,11 @@ public interface Show {
 
     void sort(String path);
 
+    void update(String path);
+
+    void delete(String path);
+
+    void writeCsv(String path);
+
     ArrayList<?> csvToObject(String path);
 }

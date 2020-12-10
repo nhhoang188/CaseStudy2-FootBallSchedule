@@ -49,8 +49,8 @@ public class Team {
     }
 
     public String getPoints() {
-        int test= (Integer.parseInt(gameWin)*3 + Integer.parseInt(gameDraw) );
-        return test +"";
+        int test = (Integer.parseInt(gameWin) * 3 + Integer.parseInt(gameDraw));
+        return test + "";
     }
 
     public void setPoints(String points) {
@@ -67,12 +67,12 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
-                "name='" + name + '\'' +
-                ", gameWin=" + gameWin +
-                ", gameLoss=" + gameLoss +
-                ", gameDraw=" + gameDraw +
-                ", points=" + points +
-                '}';
+        return
+                "Name='" + name +
+                        ", gameWin=" + gameWin +
+                        ", gameLoss=" + gameLoss +
+                        ", gameDraw=" + gameDraw +
+                        ", points=" + points
+                ;
     }
 }

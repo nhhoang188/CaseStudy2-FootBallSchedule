@@ -30,12 +30,12 @@ public class ShowSchedules extends RegexForm implements Show {
     public void update(String path) {
         schedules.setListMatch(csvToObject(path));
         boolean flag = true;
-        while (flag){
+        while (flag) {
             System.out.println("Enter Name of Team Host:");
             String name = sc.nextLine();
             System.out.println("Enter Name of Team Guest:");
             String name1 = sc.nextLine();
-            int index =0;
+            int index = 0;
             for (int i = 0; i < schedules.getListMatch().size(); i++) {
                 if (name.equals(schedules.getListMatch().get(i).getNameHost()) && name1.equals(schedules.getListMatch().get(i).getNameGuest())) {
                     System.out.println(schedules.getListMatch().get(i));
@@ -45,8 +45,10 @@ public class ShowSchedules extends RegexForm implements Show {
                     flag = false;
                     index++;
                 }
-            } if (index==0){
-            System.out.println("Opps!! Please enter the correct format:d ");}
+            }
+            if (index == 0) {
+                System.out.println("Opps!! Please enter the correct format:d ");
+            }
         }
 
     }

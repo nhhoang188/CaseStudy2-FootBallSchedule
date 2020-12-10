@@ -1,6 +1,7 @@
 package controler;
 
 import model.RegexForm;
+import model.Show;
 import model.Team;
 
 import java.io.*;
@@ -8,23 +9,70 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class ShowStandings extends RegexForm {
+public class ShowStandings extends RegexForm implements Show {
     Standings standings = new Standings();
 
-    public void showAll() {
-        standings.setListTeam(ShowStandings.csvToObject("ListTeam.CSV"));
-        sort();
+    @Override
+    public void showAll(String path) {
+        standings.setListTeam(csvToObject(path));
+        sort(path);
         for (int i = 0; i < standings.getListTeam().size(); i++) {
             System.out.println(standings.getListTeam().get(i));
         }
     }
 
-    public void sort() {
-        standings.setListTeam(ShowStandings.csvToObject("ListTeam.CSV"));
+    public void sort(String path) {
+        standings.setListTeam(csvToObject(path));
         Collections.sort(standings.getListTeam(), new SortTeamByPoints());
     }
 
-    public static ArrayList<Team> csvToObject(String path) {
+    public void updatePoints(String path) {
+        standings.setListTeam(csvToObject(path));
+        System.out.println("Enter Name Of Team:");
+        String name = sc.nextLine();
+        FileWriter fileWriter = null;
+        File file = new File(path);
+        try {
+            fileWriter = new FileWriter(file);
+            for (int i = 0; i < standings.getListTeam().size(); i++) {
+                if (name.equals(standings.getListTeam().get(i).getName())) {
+                    standings.getListTeam().get(i).setGameWin(Standings.inputGameWin());
+                    standings.getListTeam().get(i).setGameLoss(Standings.inputGameLoss());
+                    standings.getListTeam().get(i).setGameDraw(Standings.inputGameDraw());
+                }
+                fileWriter.append(standings.getListTeam().get(i).getName());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(standings.getListTeam().get(i).getGameWin());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(standings.getListTeam().get(i).getGameLoss());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(standings.getListTeam().get(i).getGameDraw());
+                fileWriter.append(COMMA_DELIMITER);
+                fileWriter.append(standings.getListTeam().get(i).getPoints());
+                fileWriter.append(NEW_LINE_SEPARATOR);
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fileWriter != null) {
+                try {
+                    fileWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void showByTeam(String path) {
+
+    }
+
+    @Override
+    public ArrayList<Team> csvToObject(String path) {
         ArrayList<Team> listTeam = new ArrayList<>();
         String line = null;
         FileReader fileReader = null;
@@ -33,6 +81,7 @@ public class ShowStandings extends RegexForm {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        if (null == fileReader) throw new AssertionError();
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         while (true) {
@@ -41,12 +90,13 @@ public class ShowStandings extends RegexForm {
             } catch (IOException exception) {
                 System.out.println(exception);
             }
+            if (line == null) throw new AssertionError();
             String[] temp = line.split(COMMA_DELIMITER);
             String name = temp[0];
-            int gameWin = Integer.parseInt(temp[1]);
-            int gameLost = Integer.parseInt(temp[2]);
-            int gameDraw = Integer.parseInt(temp[3]);
-            int points = Integer.parseInt(temp[4]);
+            String gameWin = temp[1];
+            String gameLost = temp[2];
+            String gameDraw = temp[3];
+            String points = temp[4];
             listTeam.add(new Team(name, gameWin, gameLost, gameDraw, points));
         }
         try {
@@ -56,5 +106,6 @@ public class ShowStandings extends RegexForm {
         }
         return listTeam;
     }
+
 
 }

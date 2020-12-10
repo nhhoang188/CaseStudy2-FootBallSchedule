@@ -1,6 +1,5 @@
 package controler;
 
-import model.Match;
 import model.Player;
 import model.RegexForm;
 import model.Team;
@@ -13,21 +12,19 @@ import java.util.List;
 
 
 public class Standings extends RegexForm {
-    static List<Team> listTeam = new ArrayList<>();
-    Player player = new Player();
-
+    List<Team> listTeam = new ArrayList<>();
+    Team team = new Team();
     public void setListTeam(ArrayList<Team> listTeam) {
-         this.listTeam = listTeam;
+        this.listTeam = listTeam;
     }
 
     public List<Team> getListTeam() {
         return listTeam;
     }
 
-    public void addTeam() {
-        String filePath = "ListTeam.CSV";
+    public void addTeam(String path) {
         FileWriter fileWriter = null;
-        File file = new File(filePath);
+        File file = new File(path);
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -56,27 +53,27 @@ public class Standings extends RegexForm {
         }
     }
 
-    private String inputGameWin() {
+    public static String inputGameWin() {
         System.out.print("Input number of games won: ");
         return sc.nextLine();
     }
 
-    private String inputGameLoss() {
+    public static String inputGameLoss() {
         System.out.print("Input number of games loss: ");
         return sc.nextLine();
     }
 
-    private String inputGameDraw() {
+    public static String inputGameDraw() {
         System.out.print("Input number of games draw: ");
         return sc.nextLine();
     }
 
-    private String points() {
-        System.out.print("Input number of games draw: ");
+    public static String points() {
+        System.out.print("Input Points: ");
         return sc.nextLine();
     }
 
-    private String inputNameOfTeam() {
+    public static String inputNameOfTeam() {
         System.out.println("Enter Name Of Team: ");
         return sc.nextLine();
     }

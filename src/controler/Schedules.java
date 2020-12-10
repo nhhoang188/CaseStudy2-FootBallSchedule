@@ -16,11 +16,12 @@ public class Schedules extends RegexForm {
     static Team host = new Team();
     static Team guest = new Team();
     static List<Match> listMatch = new ArrayList<>();
-    public static void setListProducts(ArrayList<Match> listMatch) {
+
+    public void setListMatch(ArrayList<Match> listMatch) {
         Schedules.listMatch = listMatch;
     }
 
-    public static List<Match> getListMatch() {
+    public List<Match> getListMatch() {
         return listMatch;
     }
 
@@ -82,12 +83,12 @@ public class Schedules extends RegexForm {
     }
 
     public String inputGuest(Team guest) {
-        System.out.println("Name of Team Host: ");
+        System.out.println("Name of Team Guest: ");
         guest.setName(sc.nextLine());
         return guest.getName();
     }
 
-    public  String inputMatchScore() {
+    public String inputMatchScore() {
 
         while (true) {
             System.out.println("Enter Match Score: ");

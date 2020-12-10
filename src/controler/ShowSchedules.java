@@ -2,49 +2,60 @@ package controler;
 
 import model.Match;
 import model.RegexForm;
-import model.Team;
+import model.Show;
+
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class ShowSchedules extends RegexForm {
-    public static void showAll(String path) {
-        File file = new File(path);
-        BufferedReader bufferedReader = null;
-        String line = "";
-        try {
-            bufferedReader = new BufferedReader(new FileReader(path));
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] schedules = line.split(COMMA_DELIMITER);
-                System.out.println("" + schedules[0] + " " + schedules[1] + " " + schedules[2] + " " + schedules[3] + " " + schedules[4] + "");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+public class ShowSchedules extends RegexForm implements Show {
+    Schedules schedules = new Schedules();
+
+    @Override
+    public void showAll(String path) {
+        schedules.setListMatch(csvToObject(path));
+        for (int i = 0; i < schedules.getListMatch().size(); i++) {
+            System.out.println(schedules.getListMatch().get(i));
         }
     }
 
-    public static void showByTeam(String path) {
+    @Override
+    public void sort(String path) {
+
+    }
+   @Override
+    public void showByTeam(String path) {
         System.out.println("Name of Team is?: ");
         String name = sc.nextLine();
-        Schedules.setListProducts(ShowSchedules.csvToObject("ListMatch.CSV"));
-        for (int i = 0; i <Schedules.getListMatch().size() ; i++) {
-            String name1= Schedules.getListMatch().get(i).getNameHost();
-            String name2 = Schedules.getListMatch().get(i).getNameGuest();
-            if ( name.equals(name1) || name.equals(name2) ){
-                System.out.println(Schedules.getListMatch().get(i));
+        schedules.setListMatch(csvToObject(path));
+        for (int i = 0; i < schedules.getListMatch().size(); i++) {
+            String name1 = schedules.getListMatch().get(i).getNameHost();
+            String name2 = schedules.getListMatch().get(i).getNameGuest();
+            if (name.equals(name1) || name.equals(name2)) {
+                System.out.println(schedules.getListMatch().get(i));
             }
         }
     }
 
-    public static ArrayList<Match> csvToObject(String path) {
+    public void showNextRound(String path) {
+        schedules.setListMatch(csvToObject(path));
+        Pattern pattern = Pattern.compile(SCORE_REGEX);
+        Matcher matcher;
+
+        for (int i = 0; i < schedules.getListMatch().size(); i++) {
+            String result = schedules.getListMatch().get(i).getMatchScore();
+            matcher = pattern.matcher(result);
+
+            if (!matcher.matches()) {
+                System.out.println(schedules.getListMatch().get(i));
+            }
+        }
+    }
+
+    @Override
+    public ArrayList<Match> csvToObject(String path) {
         ArrayList<Match> listMatches = new ArrayList<>();
         String line = null;
         FileReader fileReader = null;
@@ -53,6 +64,7 @@ public class ShowSchedules extends RegexForm {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        assert fileReader != null;
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         while (true) {
@@ -61,6 +73,7 @@ public class ShowSchedules extends RegexForm {
             } catch (IOException exception) {
                 System.out.println(exception);
             }
+            assert line != null;
             String[] temp = line.split(COMMA_DELIMITER);
             String dayCompetition = temp[0];
             String matchScore = temp[1];

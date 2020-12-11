@@ -53,7 +53,7 @@ public class ShowSchedules extends RegexForm implements Show {
                 System.out.println("Opps!! Please enter the correct format:d ");
             }
         }
-
+        writeCsv(path);
     }
 
     @Override

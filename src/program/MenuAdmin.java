@@ -37,25 +37,54 @@ public class MenuAdmin extends RegexForm {
     }
 
     public static void menuStandings() {
-        System.out.println("1. Add team to Standings.");
-        System.out.println("2. Edit team information.");
-        System.out.println("3. Removed team from the list Standings.");
-        System.out.println("4. Back to menu.");
+        System.out.println("1. Edit Source file.");
+        System.out.println("2. Back to menu.");
         String choice = sc.nextLine();
-        choiceStandings(choice);
+        switch (choice){
+            case "1":
+                System.out.println("Enter: source file .csv");
+                String path = sc.nextLine();
+                System.out.println("1. Add team to Standings.");
+                System.out.println("2. Edit team information.");
+                System.out.println("3. Removed team from the list Standings.");
+                System.out.println("4. Back to menu admin.");
+                String choice1 = sc.nextLine();
+                choiceStandings(choice1, path);
+            case "2":
+                showMenu();
+                break;
+            default:
+                System.out.println("Oops!! Please enter again ...");
+                sc.nextLine();
+                menuStandings();
+        }
     }
 
     public static void menuSchedules() {
-        System.out.println("1. Add match to Schedules.");
-        System.out.println("2. Edit match information.");
-        System.out.println("3. Back to menu.");
+        System.out.println("1. Edit Source file.");
+        System.out.println("2. Back to menu.");
         String choice = sc.nextLine();
-        choiceSchedules(choice);
+        switch (choice){
+            case "1":
+                System.out.println("Enter: source file .csv");
+                String path = sc.nextLine();
+                System.out.println("1. Add match to Schedules.");
+                System.out.println("2. Edit match information.");
+                System.out.println("3. Back to menu admin.");
+                String choice1 = sc.nextLine();
+                choiceSchedules(choice1, path);
+                break;
+            case "2":
+                showMenu();
+                break;
+            default:
+                System.out.println("Oops!! Please enter again ...");
+                sc.nextLine();
+                menuSchedules();
+        }
     }
 
-    public static void choiceStandings(String choice) {
-        System.out.println("Enter source file .csv");
-        String path = sc.nextLine();
+    public static void choiceStandings(String choice, String path) {
         switch (choice) {
             case "1":
                 standings.addTeam(path);
@@ -70,7 +99,7 @@ public class MenuAdmin extends RegexForm {
                 menuStandings();
                 break;
             case "4":
-                showMenu();
+                menuAdmin();
                 break;
             default:
                 System.out.println("Oops!! Please enter again ...");
@@ -79,9 +108,7 @@ public class MenuAdmin extends RegexForm {
         }
     }
 
-    public static void choiceSchedules(String choice) {
-        System.out.println("Enter source file .csv");
-        String path = sc.nextLine();
+    public static void choiceSchedules(String choice, String path) {
         switch (choice) {
             case "1":
                 schedules.addMatch(path);
@@ -92,7 +119,7 @@ public class MenuAdmin extends RegexForm {
                 menuSchedules();
                 break;
             case "3":
-                showMenu();
+                menuAdmin();
                 break;
             default:
                 System.out.println("Oops!! Please enter again ...");

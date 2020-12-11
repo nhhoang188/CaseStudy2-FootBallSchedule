@@ -17,7 +17,7 @@ public class Main extends RegexForm {
     }
 
     public static void getTime() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm, dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         System.out.println("Today is: " + dtf.format(now));
     }

@@ -26,9 +26,8 @@ public class Schedules extends RegexForm {
     }
 
     public void addMatch(String path) {
-        String filePath = path;
         FileWriter fileWriter = null;
-        File file = new File(filePath);
+        File file = new File(path);
         try {
             if (!file.exists()) {
                 file.createNewFile();

@@ -1,6 +1,6 @@
 package controler;
 
-import model.Player;
+
 import model.RegexForm;
 import model.Team;
 

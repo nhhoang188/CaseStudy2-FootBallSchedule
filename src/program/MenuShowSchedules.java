@@ -7,7 +7,7 @@ import model.RegexForm;
 import static program.Main.showMenu;
 
 public class MenuShowSchedules extends RegexForm {
-    static ShowSchedules showSschedules = new ShowSchedules();
+    static ShowSchedules showSchedules = new ShowSchedules();
 
 
     public static void menuSchedule() {
@@ -33,22 +33,22 @@ public class MenuShowSchedules extends RegexForm {
         String choice = sc.nextLine();
         switch (choice) {
             case "1":
-                showSschedules.showAll(path + ".csv");
+                showSchedules.showAll(path + ".csv");
                 choice(path);
                 break;
             case "2":
-                showSschedules.showByTeam(path + ".csv");
+                showSchedules.showByTeam(path + ".csv");
                 choice(path);
                 break;
             case "3":
-                showSschedules.showNextRound(path + ".csv");
+                showSchedules.showNextRound(path + ".csv");
                 choice(path);
                 break;
             case "4":
                 showMenu();
                 break;
             default:
-                System.out.println("Opp!! Please enter again ...");
+                System.out.println("Oops!! Please enter again ...");
                 sc.nextLine();
                 choice(path);
         }
@@ -69,7 +69,7 @@ public class MenuShowSchedules extends RegexForm {
                     showMenu();
                     break;
                 default:
-                    System.out.println("Opp!! Please enter again ...");
+                    System.out.println("Oops!! Please enter again ...");
                     sc.nextLine();
                     fail(index);
             }

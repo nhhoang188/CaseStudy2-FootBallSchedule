@@ -50,7 +50,7 @@ public class ShowSchedules extends RegexForm implements Show {
                 }
             }
             if (index == 0) {
-                System.out.println("Opps!! Please enter the correct format:d ");
+                System.out.println("Oops!! Please enter the correct format:d ");
             }
         }
         writeCsv(path);
@@ -115,7 +115,7 @@ public class ShowSchedules extends RegexForm implements Show {
                 }
             }
             if (index == 0) {
-                System.out.println("Opps!! Please enter the correct format:d ");
+                System.out.println("Oops!! Please enter the correct format:d ");
             }
         }
     }

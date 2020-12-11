@@ -37,7 +37,7 @@ public class MenuShowStandings extends RegexForm {
                 showMenu();
                 break;
             default:
-                System.out.println("Opp!! Please enter again ...");
+                System.out.println("Oops!! Please enter again ...");
                 sc.nextLine();
                 choice(path);
         }
@@ -59,7 +59,7 @@ public class MenuShowStandings extends RegexForm {
                     showMenu();
                     break;
                 default:
-                    System.out.println("Opp!! Please enter again ...");
+                    System.out.println("Oops!! Please enter again ...");
                     sc.nextLine();
                     fail(index);
             }

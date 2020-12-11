@@ -49,7 +49,7 @@ public class Main extends RegexForm {
                 System.exit(0);
                 break;
             default:
-                System.out.println("Opp!! Please enter again ...");
+                System.out.println("Oops!! Please enter again ...");
                 sc.nextLine();
                 showMenu();
         }

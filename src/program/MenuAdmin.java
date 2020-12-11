@@ -9,7 +9,7 @@ import model.RegexForm;
 import static program.Main.showMenu;
 
 public class MenuAdmin extends RegexForm {
-    static ShowSchedules showSschedules = new ShowSchedules();
+    static ShowSchedules showSchedules = new ShowSchedules();
     static ShowStandings showStandings = new ShowStandings();
     static Schedules schedules = new Schedules();
     static Standings standings = new Standings();
@@ -38,7 +38,7 @@ public class MenuAdmin extends RegexForm {
 
     public static void menuStandings() {
         System.out.println("1. Add team to Standings.");
-        System.out.println("2. Edit team infomation.");
+        System.out.println("2. Edit team information.");
         System.out.println("3. Removed team from the list Standings.");
         System.out.println("4. Back to menu.");
         String choice = sc.nextLine();
@@ -47,7 +47,7 @@ public class MenuAdmin extends RegexForm {
 
     public static void menuSchedules() {
         System.out.println("1. Add match to Schedules.");
-        System.out.println("2. Edit match infomation.");
+        System.out.println("2. Edit match information.");
         System.out.println("3. Back to menu.");
         String choice = sc.nextLine();
         choiceSchedules(choice);
@@ -73,7 +73,7 @@ public class MenuAdmin extends RegexForm {
                 showMenu();
                 break;
             default:
-                System.out.println("Opp!! Please enter again ...");
+                System.out.println("Oops!! Please enter again ...");
                 sc.nextLine();
                 menuStandings();
         }
@@ -88,14 +88,14 @@ public class MenuAdmin extends RegexForm {
                 menuSchedules();
                 break;
             case "2":
-                showSschedules.update(path);
+                showSchedules.update(path);
                 menuSchedules();
                 break;
             case "3":
                 showMenu();
                 break;
             default:
-                System.out.println("Opp!! Please enter again ...");
+                System.out.println("Oops!! Please enter again ...");
                 sc.nextLine();
                 menuSchedules();
         }

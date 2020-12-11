@@ -1,6 +1,6 @@
 package program;
 
-import controler.Schedules;
+
 import controler.ShowSchedules;
 import model.RegexForm;
 
@@ -8,7 +8,7 @@ import static program.Main.showMenu;
 
 public class MenuShowSchedules extends RegexForm {
     static ShowSchedules showSschedules = new ShowSchedules();
-    static Schedules schedules = new Schedules();
+
 
     public static void menuSchedule() {
         boolean flag = true;

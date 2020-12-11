@@ -12,11 +12,11 @@ public class Main extends RegexForm {
     public static void main(String[] args) {
         System.out.print("Are you looking for the 2020-21 season football match schedule?");
         System.out.println(" You are welcome ^^");
-        gettime();
+        getTime();
         showMenu();
     }
 
-    public static void gettime() {
+    public static void getTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         System.out.println("Today is: " + dtf.format(now));
@@ -38,13 +38,14 @@ public class Main extends RegexForm {
                 MenuShowStandings.menuStandings();
                 break;
             case "3":
-
+                System.out.println("We are updating , will be completed in the fastest time. Sorry about this :(");
+                showMenu();
                 break;
             case "4":
-
+                MenuAdmin.menuAdmin();
                 break;
             case "5":
-                System.out.println("Nice to bring you the useful information. Goodbye see you again!");
+                System.out.println("Nice to bring you the useful information. Goodbye, see you again!");
                 System.exit(0);
                 break;
             default:

@@ -1,14 +1,13 @@
 package program;
 
 import controler.ShowStandings;
-import controler.Standings;
 import model.RegexForm;
 
 import static program.Main.showMenu;
 
 public class MenuShowStandings extends RegexForm {
     static ShowStandings showStandings = new ShowStandings();
-    static Standings standings = new Standings();
+
 
     public static void menuStandings() {
         boolean flag = true;
@@ -26,7 +25,7 @@ public class MenuShowStandings extends RegexForm {
     }
 
     public static void choice(String path) {
-        System.out.println("1. Show Standings " +path);
+        System.out.println("1. Show Standings " + path);
         System.out.println("2. Back to menu.");
         String choice = sc.nextLine();
         switch (choice) {

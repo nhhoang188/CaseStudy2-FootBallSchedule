@@ -1,31 +1,57 @@
 package program;
-import controler.ShowSchedules;
-import controler.ShowStandings;
+
+
+import model.RegexForm;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-public class Main {
+public class Main extends RegexForm {
 
     public static void main(String[] args) {
-            gettime();
-//        ShowSchedules schedules = new ShowSchedules();
-//        schedules.showAll("ListMatch.CSV");
-//        schedules.update("ListMatch.CSV");
-//        schedules.showByTeam("ListMatch.CSV");
-//        schedules.showNextRound("ListMatch.CSV");
-//
-//
-//        ShowStandings standings = new ShowStandings();
-//
-//        standings.showAll("ListTeam.CSV");
-//        standings.update("ListTeam.CSV");
-//        standings.showAll("ListTeam.CSV");
+        System.out.print("Are you looking for the 2020-21 season football match schedule?");
+        System.out.println(" You are welcome ^^");
+        gettime();
+        showMenu();
     }
-    public static void gettime(){
+
+    public static void gettime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         System.out.println("Today is: " + dtf.format(now));
     }
+
+    public static void showMenu() {
+        System.out.println("We have: ");
+        System.out.println("1. Search the schedule of matches.");
+        System.out.println("2. Standings football.");
+        System.out.println("3. Top scorer information.");
+        System.out.println("4. For administrators");
+        System.out.println("5. Exit.");
+        String choose = sc.nextLine();
+        switch (choose) {
+            case "1":
+                MenuShowSchedules.menuSchedule();
+                break;
+            case "2":
+                MenuShowStandings.menuStandings();
+                break;
+            case "3":
+
+                break;
+            case "4":
+
+                break;
+            case "5":
+                System.out.println("Nice to bring you the useful information. Goodbye see you again!");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Opp!! Please enter again ...");
+                sc.nextLine();
+                showMenu();
+        }
+    }
+
 }

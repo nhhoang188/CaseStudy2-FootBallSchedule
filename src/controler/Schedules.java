@@ -25,8 +25,8 @@ public class Schedules extends RegexForm {
         return listMatch;
     }
 
-    public void addMatch() {
-        String filePath = "ListMatch.CSV";
+    public void addMatch(String path) {
+        String filePath = path;
         FileWriter fileWriter = null;
         File file = new File(filePath);
         try {

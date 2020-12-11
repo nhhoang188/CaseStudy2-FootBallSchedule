@@ -68,7 +68,7 @@ public class Team {
     @Override
     public String toString() {
         return
-                "Name='" + name +
+                "Name=" + name +
                         ", gameWin=" + gameWin +
                         ", gameLoss=" + gameLoss +
                         ", gameDraw=" + gameDraw +

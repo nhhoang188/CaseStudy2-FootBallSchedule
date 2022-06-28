@@ -2,7 +2,6 @@ package controler;
 
 import model.Match;
 import model.RegexForm;
-import model.Show;
 
 
 import java.io.*;

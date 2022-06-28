@@ -1,7 +1,6 @@
 package controler;
 
 import model.RegexForm;
-import model.Show;
 import model.Team;
 
 import java.io.*;
